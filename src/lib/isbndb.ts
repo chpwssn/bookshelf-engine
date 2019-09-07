@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IsbndbResponse } from "../../types/isbndb_types";
+import { IsbndbResponse } from "../types/isbndb_types";
 
 export default class Isbndb {
   private apiKey: string;

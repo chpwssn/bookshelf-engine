@@ -1,7 +1,7 @@
 import BookCache from "./book_cache";
 import * as fs from "fs";
 import * as path from "path";
-import { IsbndbBook } from "../../types/isbndb_types";
+import { IsbndbBook } from "../types/isbndb_types";
 
 class DiskCache implements BookCache {
   private baseDir: string;
