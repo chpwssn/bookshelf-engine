@@ -15,55 +15,51 @@ An engine for telling people about your bookshelf
 3. Set the path to your on-disk cache (saves ISBNdb API requests) `export BOOKSHELF_CACHE_DIR=/path/to/cache/dir`
 
 <!-- toc -->
-
-- [Usage](#usage)
-- [Commands](#commands)
-  <!-- tocstop -->
+* [bookshelf-engine](#bookshelf-engine)
+* [Quickstart](#quickstart)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g bookshelf-engine
 $ bookshelf COMMAND
 running command...
 $ bookshelf (-v|--version|version)
-bookshelf-engine/0.0.0 darwin-x64 node-v8.12.0
+bookshelf-engine/1.0.0 darwin-x64 node-v8.12.0
 $ bookshelf --help [COMMAND]
 USAGE
   $ bookshelf COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
+* [`bookshelf build [FILE]`](#bookshelf-build-file)
+* [`bookshelf help [COMMAND]`](#bookshelf-help-command)
 
-- [`bookshelf hello [FILE]`](#bookshelf-hello-file)
-- [`bookshelf help [COMMAND]`](#bookshelf-help-command)
+## `bookshelf build [FILE]`
 
-## `bookshelf hello [FILE]`
-
-describe the command here
+build a bookshelf HTML file
 
 ```
 USAGE
-  $ bookshelf hello [FILE]
+  $ bookshelf build [FILE]
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -o, --outputPath=outputPath      (required) output file name
+  -t, --templatePath=templatePath  (required) template path
 
 EXAMPLE
-  $ bookshelf hello
-  hello world from ./src/hello.ts!
+  $ bookshelf build -o bookshelf.html -t mytemplate.mustache mybookshelf.yml
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/chpwssn/bookshelf-engine/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/build.ts](https://github.com/chpwssn/bookshelf-engine/blob/v1.0.0/src/commands/build.ts)_
 
 ## `bookshelf help [COMMAND]`
 
@@ -81,5 +77,4 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.1/src/commands/help.ts)_
-
 <!-- commandsstop -->
