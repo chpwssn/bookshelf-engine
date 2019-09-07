@@ -29,7 +29,7 @@ $ npm install -g bookshelf-engine
 $ bookshelf COMMAND
 running command...
 $ bookshelf (-v|--version|version)
-bookshelf-engine/1.1.0 darwin-x64 node-v8.12.0
+bookshelf-engine/1.1.1 darwin-x64 node-v8.12.0
 $ bookshelf --help [COMMAND]
 USAGE
   $ bookshelf COMMAND
@@ -59,7 +59,7 @@ EXAMPLE
   $ bookshelf build -o bookshelf.html -t mytemplate.mustache mybookshelf.yml
 ```
 
-_See code: [src/commands/build.ts](https://github.com/chpwssn/bookshelf-engine/blob/v1.1.0/src/commands/build.ts)_
+_See code: [src/commands/build.ts](https://github.com/chpwssn/bookshelf-engine/blob/v1.1.1/src/commands/build.ts)_
 
 ## `bookshelf help [COMMAND]`
 
