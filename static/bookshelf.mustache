@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+.books {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.book {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: #CCC 1px solid;
+  margin: 16px;
+  padding: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.book img {
+  max-height: 150px;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0
+}
+</style>
+<body>
+<div class="books">
+    {{#books}}
+    <div class="book">
+    <div>
+        <img src="{{book.image}}"/>
+    </div>
+    <div>
+        <p>{{book.title_long}}</p>
+        <p>{{book.publish_date}}
+        <p>By:</p>
+        <ul>
+            {{#book.authors}}
+                <li>{{.}}</li>
+            {{/book.authors}}
+        </ul>
+    </div>
+    <div>
+    {{#rating}}
+    <p>Rating: {{.}}</p>
+    {{/rating}}
+    {{#review}}
+    <p>Review: {{.}}</p>
+    {{/review}}
+    </div>
+    </div>
+    {{/books}}
+</div>
+</body>
+</html>

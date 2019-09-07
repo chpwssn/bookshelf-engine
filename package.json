@@ -1,0 +1,58 @@
+{
+  "name": "bookshelf-engine",
+  "description": "An engine for telling people about your bookshelf",
+  "version": "0.0.0",
+  "author": "Chip Wasson @chpwssn",
+  "bin": {
+    "bookshelf": "./bin/run"
+  },
+  "bugs": "https://github.com/chpwssn/bookshelf-engine/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "@types/mustache": "^0.8.32",
+    "@types/yaml": "^1.0.2",
+    "axios": "^0.19.0",
+    "mustache": "^3.0.3",
+    "tslib": "^1",
+    "yaml": "^1.6.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/node": "^10",
+    "globby": "^8",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/chpwssn/bookshelf-engine",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "bookshelf",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "chpwssn/bookshelf-engine",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
