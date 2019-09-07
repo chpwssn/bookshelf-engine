@@ -36,9 +36,15 @@ class Bookshelf {
     try {
       return this.Cache.read(sanitizedIsbn);
     } catch {
-      const apiResponse = await this.Isbnapi.getBook(isbn);
-      this.Cache.write(sanitizedIsbn, apiResponse.book);
-      return apiResponse.book;
+      try {
+        const apiResponse = await this.Isbnapi.getBook(isbn);
+        this.Cache.write(sanitizedIsbn, apiResponse.book);
+        return apiResponse.book;
+      } catch (e) {
+        const err = `${e.response.status}: ${e.response.statusText} for ISBN: ${isbn}`;
+        console.log(err);
+        throw err;
+      }
     }
   }
 
@@ -47,10 +53,20 @@ class Bookshelf {
     const parsedContents: IBookshelfYaml = YAML.parse(fileContents);
     parsedContents.books = await Promise.all(
       parsedContents.books.map(async book => {
-        return {
-          ...book,
-          book: await this.fetchBookInformation(book.isbn)
-        };
+        let bookData = null;
+        let error = null;
+        try {
+          bookData = await this.fetchBookInformation(book.isbn);
+          return {
+            ...book,
+            book: bookData
+          };
+        } catch (errMsg) {
+          return {
+            ...book,
+            error: errMsg
+          };
+        }
       })
     );
     this.Books = parsedContents.books;
@@ -60,9 +76,10 @@ class Bookshelf {
     const templateContents = fs.readFileSync(templatePath, "utf8");
     mustache.parse(templateContents);
     return mustache.render(templateContents, {
-      books: this.Books.sort((a: IBookRecord, b: IBookRecord) =>
-        a.book.title_long.localeCompare(b.book.title_long)
-      )
+      books: this.Books.sort((a: IBookRecord, b: IBookRecord) => {
+        if (a.book == undefined || b.book == undefined) return -1;
+        return a.book.title_long.localeCompare(b.book.title_long);
+      })
     });
   }
 }

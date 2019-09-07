@@ -30,29 +30,42 @@ ul {
 <body>
 <div class="books">
     {{#books}}
-    <div class="book">
-    <div>
-        <img src="{{book.image}}"/>
-    </div>
-    <div>
-        <p>{{book.title_long}}</p>
-        <p>{{book.publish_date}}
-        <p>By:</p>
-        <ul>
-            {{#book.authors}}
-                <li>{{.}}</li>
-            {{/book.authors}}
-        </ul>
-    </div>
-    <div>
-    {{#rating}}
-    <p>Rating: {{.}}</p>
-    {{/rating}}
-    {{#review}}
-    <p>Review: {{.}}</p>
-    {{/review}}
-    </div>
-    </div>
+      <div class="book">
+        {{#book}}
+          <div>
+              <img src="{{book.image}}"/>
+          </div>
+          <div>
+              <p>{{book.title_long}}</p>
+              <p>{{book.publish_date}}
+              <p>By:</p>
+              <ul>
+                  {{#book.authors}}
+                      <li>{{.}}</li>
+                  {{/book.authors}}
+              </ul>
+          </div>
+          <div>
+            {{#rating}}
+            <p>Rating: {{.}}</p>
+            {{/rating}}
+            {{#review}}
+            <p>Review: {{.}}</p>
+            {{/review}}
+          </div>
+        {{/book}}
+        {{^book}}
+          <div>
+            <!-- no img -->
+          </div>
+          <div>
+            {{#title}}
+            <p>{{title}}</p>
+            {{/title}}
+            <p>Errored book {{error}}</p>
+          </div>
+        {{/book}}
+      </div>
     {{/books}}
 </div>
 </body>
