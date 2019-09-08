@@ -218,8 +218,8 @@
         "signature": "940774e1da806a4e8d18ce3b5c8ceead82a6e5e188a45575007ca7c8f84a4d76"
       },
       "./src/types/isbndb_types.ts": {
-        "version": "9bc80078b77eb48f384ce2b068bdf5f1582e697346a9362cfd0f9dfd2f2388ba",
-        "signature": "34359748caba604f2b8f889e2aaa54e5a491c5ffad6f735d322030f5d4800e0e"
+        "version": "0c8b600d1e13a1ced0eedd6a32eb43fb4705d3d84a783b8f1b34820f0aa1a44b",
+        "signature": "9d408ecd3443c189b51a75d5c28c077a6a597ed86d71188873c4245548bf5bdc"
       },
       "./src/lib/book_cache.ts": {
         "version": "fbf7573bc9b9482d4c2920cb53d623c84ef489033820e989054b4cdaf9af6a5d",
@@ -233,9 +233,13 @@
         "version": "03abb8c909c315c0d39dcccdebb22e068326dafec2dfa9af7623185031a0b717",
         "signature": "50cb1ef5137e2dc48a6dde13c8b30597b56a1110495159d7d2808460acfb63b3"
       },
+      "./src/lib/openlibrary.ts": {
+        "version": "205a2e1751ee3b6bb3e4ec1f0a09c2216bd06d2d4e9e89f938550dfbbc556335",
+        "signature": "746364e0ab48b98a2b248fac5247126c3d72ba1c23ccefa96fa5441c0eb8c0e5"
+      },
       "./src/lib/bookshelf.ts": {
-        "version": "d0dd14776edb462809e7b76bf5d2b2c2421b4c0b1e47549687a8c0490f6e100d",
-        "signature": "a37a705bec4aacd0f98ba445ce031bd2e012bd3cd2dbad55ef970b8bba0bc57c"
+        "version": "4efec18ea55639e8bd2aa16c3a4ccb4ba31dcdce08b3b4a4cec6880ad194ba79",
+        "signature": "c638f7ab35d7a39d2376dfd3709671b8c92011d1f1efddb43386fe2158c145dc"
       },
       "./src/lib/disk_cache.ts": {
         "version": "e4c1f7531388800a2d361ade9d2f2ae6535a056d6f3a85b7e61efeed5c9b14f3",
@@ -750,6 +754,12 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/lib/openlibrary.ts": [
+        "./node_modules/axios/index.d.ts",
+        "./src/types/isbndb_types.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./src/lib/bookshelf.ts": [
         "./node_modules/@types/yaml/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
@@ -757,6 +767,7 @@
         "./src/lib/book_cache.ts",
         "./src/lib/isbndb.ts",
         "./src/types/isbndb_types.ts",
+        "./src/lib/openlibrary.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1360,6 +1371,9 @@
       "./src/lib/isbndb.ts": [
         "./src/types/isbndb_types.ts"
       ],
+      "./src/lib/openlibrary.ts": [
+        "./src/types/isbndb_types.ts"
+      ],
       "./src/lib/bookshelf.ts": [
         "./src/types/isbndb_types.ts",
         "./src/lib/book_cache.ts",
@@ -1739,6 +1753,7 @@
       "./src/lib/book_cache.ts",
       "./node_modules/axios/index.d.ts",
       "./src/lib/isbndb.ts",
+      "./src/lib/openlibrary.ts",
       "./src/lib/bookshelf.ts",
       "./src/lib/disk_cache.ts",
       "./src/lib/config.ts",

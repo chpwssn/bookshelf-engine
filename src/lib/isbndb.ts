@@ -11,11 +11,12 @@ export default class Isbndb {
 
   public async getBook(isbn: string): Promise<IsbndbResponse> {
     const response = await axios.get(`/book/${isbn}`, {
-      baseURL: `https://${this.host}/`,
+      baseURL: `https://${this.host}`,
       headers: {
         Authorization: this.apiKey
       }
     });
+    if (isbn === "9780060739096") console.log(response.data);
     return response.data;
   }
 }

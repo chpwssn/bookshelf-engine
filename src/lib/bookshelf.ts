@@ -43,11 +43,11 @@ class Bookshelf {
       return this.Cache.read(sanitizedIsbn);
     } catch {
       try {
-        const apiResponse = await this.OpenLibrary.getBook(isbn);
+        const apiResponse = await fetch(isbn);
         this.Cache.write(sanitizedIsbn, apiResponse.book);
         return apiResponse.book;
       } catch (e) {
-        const err = `${e.response.status}: ${e.response.statusText} for ISBN: ${isbn}`;
+        const err = `Couldn't find information for ISBN: ${isbn}`;
         console.log(err);
         throw err;
       }
@@ -57,17 +57,21 @@ class Bookshelf {
   private async fetchBookInformation(isbn: string): Promise<IsbndbBook> {
     // TODO: Refactor to map an array of functions instead
     // const resolvers = [this.OpenLibrary.getBook, this.Isbnapi.getBook];
+    let result = null;
     try {
-      return await this.fetchBookInformationFromProvider(
+      console.log(`Trying openlibrary ${isbn}`);
+      result = await this.fetchBookInformationFromProvider(
         isbn,
         this.OpenLibrary.getBook
       );
     } catch {
-      return await this.fetchBookInformationFromProvider(
+      console.log(`Trying isbnapi ${isbn}`);
+      result = await this.fetchBookInformationFromProvider(
         isbn,
-        this.Isbnapi.getBook
+        this.Isbnapi.getBook.bind(this.Isbnapi)
       );
     }
+    return result;
   }
 
   public async fromFile(path: string): Promise<void> {
