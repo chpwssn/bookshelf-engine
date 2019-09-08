@@ -3,7 +3,8 @@ import * as fs from "fs";
 import * as mustache from "mustache";
 import BookCace from "./book_cache";
 import ISBNdb from "./isbndb";
-import { IsbndbBook } from "../types/isbndb_types";
+import { IsbndbBook, IsbndbResponse } from "../types/isbndb_types";
+import OpenLibrary from "./openlibrary";
 
 export interface IBookRecord {
   isbn: string;
@@ -20,24 +21,29 @@ class Bookshelf {
   private Books: IBookRecord[];
   private Cache: BookCace;
   private Isbnapi: ISBNdb;
+  private OpenLibrary: OpenLibrary;
 
   constructor(cache: BookCace, isbnapi: ISBNdb) {
     this.Books = [];
     this.Cache = cache;
     this.Isbnapi = isbnapi;
+    this.OpenLibrary = new OpenLibrary();
   }
 
   private sanitizeIsbn(isbn: string): string {
     return isbn.replace(/-/, "");
   }
 
-  private async fetchBookInformation(isbn: string): Promise<IsbndbBook> {
+  private async fetchBookInformationFromProvider(
+    isbn: string,
+    fetch: (isbn: string) => Promise<IsbndbResponse>
+  ): Promise<IsbndbBook> {
     const sanitizedIsbn = this.sanitizeIsbn(isbn);
     try {
       return this.Cache.read(sanitizedIsbn);
     } catch {
       try {
-        const apiResponse = await this.Isbnapi.getBook(isbn);
+        const apiResponse = await this.OpenLibrary.getBook(isbn);
         this.Cache.write(sanitizedIsbn, apiResponse.book);
         return apiResponse.book;
       } catch (e) {
@@ -45,6 +51,22 @@ class Bookshelf {
         console.log(err);
         throw err;
       }
+    }
+  }
+
+  private async fetchBookInformation(isbn: string): Promise<IsbndbBook> {
+    // TODO: Refactor to map an array of functions instead
+    // const resolvers = [this.OpenLibrary.getBook, this.Isbnapi.getBook];
+    try {
+      return await this.fetchBookInformationFromProvider(
+        isbn,
+        this.OpenLibrary.getBook
+      );
+    } catch {
+      return await this.fetchBookInformationFromProvider(
+        isbn,
+        this.Isbnapi.getBook
+      );
     }
   }
 

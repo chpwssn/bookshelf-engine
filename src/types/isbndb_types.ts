@@ -9,7 +9,7 @@ export interface IsbndbBook {
   isbn13: string;
   msrp: string;
   binding: string;
-  publish_data: string;
+  publish_date: string;
   isbn: string;
 }
 
