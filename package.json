@@ -1,7 +1,7 @@
 {
   "name": "bookshelf-engine",
   "description": "An engine for telling people about your bookshelf",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Chip Wasson @chpwssn",
   "bin": {
     "bookshelf": "./bin/run"
