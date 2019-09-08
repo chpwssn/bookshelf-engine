@@ -10,6 +10,7 @@ export interface IBookRecord {
   isbn: string;
   rating?: number;
   review?: string;
+  title?: string;
   book: IsbndbBook;
 }
 
@@ -103,8 +104,13 @@ class Bookshelf {
     mustache.parse(templateContents);
     return mustache.render(templateContents, {
       books: this.Books.sort((a: IBookRecord, b: IBookRecord) => {
-        if (a.book == undefined || b.book == undefined) return -1;
-        return a.book.title_long.localeCompare(b.book.title_long);
+        let titleA =
+          a.book === undefined ? (a.title ? a.title : "") : a.book.title_long;
+        titleA = titleA.replace(/^the\s+/i, "");
+        let titleB =
+          b.book === undefined ? (b.title ? b.title : "") : b.book.title_long;
+        titleB = titleB.replace(/^the\s+/i, "");
+        return titleA.localeCompare(titleB);
       })
     });
   }

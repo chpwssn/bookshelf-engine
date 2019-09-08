@@ -230,7 +230,7 @@
         "signature": "9b3812f5ae5c9c8c9daf7107e1041f4ad9d19aebd12b738a81f22a1ac1f5e371"
       },
       "./src/lib/isbndb.ts": {
-        "version": "03abb8c909c315c0d39dcccdebb22e068326dafec2dfa9af7623185031a0b717",
+        "version": "2759cfed67b6481ca384e7ebf7cb7e5cade544ace78d537e351d1306c15ea469",
         "signature": "50cb1ef5137e2dc48a6dde13c8b30597b56a1110495159d7d2808460acfb63b3"
       },
       "./src/lib/openlibrary.ts": {
@@ -238,7 +238,7 @@
         "signature": "746364e0ab48b98a2b248fac5247126c3d72ba1c23ccefa96fa5441c0eb8c0e5"
       },
       "./src/lib/bookshelf.ts": {
-        "version": "4efec18ea55639e8bd2aa16c3a4ccb4ba31dcdce08b3b4a4cec6880ad194ba79",
+        "version": "992a2cf55e01156b55407c824f38aa27d28592acc15abe2f67d5ddd74b5c3ebd",
         "signature": "c638f7ab35d7a39d2376dfd3709671b8c92011d1f1efddb43386fe2158c145dc"
       },
       "./src/lib/disk_cache.ts": {
@@ -1695,6 +1695,8 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "./src/lib/isbndb.ts",
+      "./src/lib/bookshelf.ts",
       "./node_modules/typescript/lib/lib.es5.d.ts",
       "./node_modules/typescript/lib/lib.es2015.d.ts",
       "./node_modules/typescript/lib/lib.es2016.d.ts",
@@ -1752,9 +1754,7 @@
       "./src/types/isbndb_types.ts",
       "./src/lib/book_cache.ts",
       "./node_modules/axios/index.d.ts",
-      "./src/lib/isbndb.ts",
       "./src/lib/openlibrary.ts",
-      "./src/lib/bookshelf.ts",
       "./src/lib/disk_cache.ts",
       "./src/lib/config.ts",
       "./src/base.ts",
